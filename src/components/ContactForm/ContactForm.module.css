@@ -1,0 +1,35 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+
+  margin-bottom: 40px;
+}
+
+.form_label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form_input {
+  margin-bottom: 20px;
+  padding: 5px 10px;
+
+  font-size: 20px;
+  width: 250px;
+}
+
+.form_button {
+  width: 200px;
+  background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-size: large;
+  border-radius: 2px;
+  cursor: pointer;
+}

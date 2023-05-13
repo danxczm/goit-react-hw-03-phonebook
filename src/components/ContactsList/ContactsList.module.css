@@ -1,0 +1,24 @@
+.contacts_list {
+  min-width: 310px;
+}
+.contacts_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.contacts_button {
+  margin-left: auto;
+  width: 100px;
+  background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+}
