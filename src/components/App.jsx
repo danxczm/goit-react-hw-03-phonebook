@@ -16,18 +16,6 @@ export class App extends Component {
   componentDidUpdate(_, prevState) {
     if (this.state.contacts !== prevState.contacts)
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-
-    // ! Підкажи будь-ласка як можна відтворити цю модалку так щоб коли у нас були збережені контакти в локал стореджі при перезавантаженні сторінки не зявлявся попап з інфою про доданий контакт
-
-    if (prevState.contacts.length < this.state.contacts.length) {
-      this.setState({ showInfo: true });
-      setTimeout(() => {
-        this.setState({ showInfo: false });
-      }, 1500);
-    }
-
-    if (prevState.contacts.length > this.state.contacts.length)
-      this.setState({ showInfo: false });
   }
 
   componentDidMount() {
@@ -42,19 +30,27 @@ export class App extends Component {
   };
 
   addNewContact = ({ name, number }) => {
+    const { contacts } = this.state;
+
     const newContact = {
       id: nanoid(5),
       name,
       number,
     };
 
-    this.state.contacts.find(
-      contact => contact.name === name || contact.number === number
-    )
-      ? alert(`${name} is already in contacts`)
-      : this.setState(({ contacts }) => ({
-          contacts: [newContact, ...contacts],
-        }));
+    if (contacts.some(contact => contact.name === name)) {
+      alert(`${name} is already in contacts`);
+    } else if (contacts.some(contact => contact.number === number)) {
+      alert(`${number} is already in contacts`);
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [newContact, ...contacts],
+      }));
+      this.setState({ showInfo: true });
+      setTimeout(() => {
+        this.setState({ showInfo: false });
+      }, 1500);
+    }
   };
 
   changeFilter = e => {
@@ -72,6 +68,7 @@ export class App extends Component {
 
   render() {
     const { filter, showInfo } = this.state;
+
     const visibleContacts = this.getFilteredContacts();
 
     return (
